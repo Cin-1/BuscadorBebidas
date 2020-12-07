@@ -25,7 +25,7 @@ const Formulario = () => {
       }}
     >
       <fieldset className="text-center">
-        <legend>Busca bedidas por Categoría o Ingrediente</legend>
+        <legend>Search drinks by Category or Ingredient</legend>
       </fieldset>
       <div className="row mt-4">
         <div className="col-md-4">
@@ -44,7 +44,7 @@ const Formulario = () => {
             name="categoria"
             onChange={obtenerDatosReceta}
           >
-            <option value="">-Selecciona Categoría-</option>
+            <option value="">-Pick a Category-</option>
             {categorias.map((categoria) => (
               <option key={categoria.strCategory} value={categoria.strCategory}>
                 {categoria.strCategory}
@@ -56,7 +56,7 @@ const Formulario = () => {
           <input
             type="submit"
             className="btn btn-block btn-primary"
-            value="Buscar Bebidas"
+            value="Search Drinks"
           />
         </div>
       </div>

@@ -22,6 +22,21 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
+    borderRadius: theme.shape.borderRadius,
+  },
+  center: { display: "flex", justifyContent: "center" },
+  img: {
+    borderRadius: "2em",
+    border: "solid 2px",
+    borderColor: "#8a8381",
+    maxWidth: "350px",
+    maxHeigth: "350px",
+  },
+  modalImg: {
+    borderRadius: "3em",
+    border: "solid 2px",
+    maxWidth: "75%",
+    maxHeigth: "75%",
   },
 }));
 
@@ -57,12 +72,25 @@ const Receta = ({ receta }) => {
 
   return (
     <div className="col-md-4 mb-3">
-      <div className="card">
-        <h2 className="card-header" style={{ minHeight: "96px" }}>
+      <div
+        className="card"
+        style={{
+          borderRadius: "2em",
+        }}
+      >
+        <h2
+          className="card-header"
+          style={{
+            minHeight: "96px",
+          }}
+          className={classes.center}
+          alt="foto bebida"
+        >
           {receta.strDrink}
         </h2>
         <img
           className="card-img-top"
+          className={classes.img}
           src={receta.strDrinkThumb}
           alt={`Imagen de ${receta.strDrink}`}
         />
@@ -86,14 +114,34 @@ const Receta = ({ receta }) => {
             }}
           >
             <div style={modalStyle} className={classes.paper}>
-              <h2>{recetaInfo.strDrink}</h2>
-              <h3 className="mt-4">Instrucciones de preparación</h3>
-              <br></br>
+              <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                {" "}
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={() => {
+                    handleClose();
+                  }}
+                >
+                  X
+                </button>
+              </div>
+              <h2 className={classes.center}>{recetaInfo.strDrink}</h2>
+              <h3 className="mt-4">Instructions</h3>
 
               <p>{recetaInfo.strInstructions}</p>
-              <img className="img-fluid my-4" src={recetaInfo.strDrinkThumb} />
-              <h3 className="mt-4">Ingredientes</h3>
-              <ul>{mostarIngredientes(recetaInfo)}</ul>
+              <div className={classes.center}>
+                <img
+                  className="img-fluid my-4"
+                  className={classes.modalImg}
+                  src={recetaInfo.strDrinkThumb}
+                  alt="foto bebida"
+                />
+              </div>
+              <div className={classes.center}>
+                <h3 className="mt-4">Ingredients</h3>
+                <ul>{mostarIngredientes(recetaInfo)}</ul>
+              </div>
             </div>
           </Modal>
         </div>

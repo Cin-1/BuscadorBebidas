@@ -12,17 +12,18 @@ const RecetasProvider = (props) => {
   });
   const [consultar, guardarConsultar] = useState(false);
   const { nombre, categoria } = busqueda;
+  console.log(categoria);
 
   useEffect(() => {
     if (consultar) {
       const obtenerRecetas = async () => {
-        const url = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${nombre}&${categoria}`;
+        const url = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${nombre}&c=${categoria}`;
         const resultado = await Axios.get(url);
         guardarRecetas(resultado.data.drinks);
       };
       obtenerRecetas();
     }
-  }, [busqueda]);
+  }, [busqueda, categoria, consultar, nombre]);
   return (
     <RecetasContext.Provider
       value={{ buscarRecetas, guardarConsultar, recetas }}
